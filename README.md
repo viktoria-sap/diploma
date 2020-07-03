@@ -12,15 +12,19 @@
 1. Запуск контейнера, в котором разворачивается база данных:
 `docker-compose up -d --force-recreate`;
 
+1. Запуск приложения (в зависимости от базы данных):
+`java -Dspring.datasource.url=jdbc:postgresql://localhost:5432/postgres -jar artifacts/aqa-shop.jar`
+
+*или*
+
+`java -Dspring.datasource.url=jdbc:mysql://localhost:3306/app -jar artifacts/aqa-shop.jar`
+
 1. Из каталога gate-simulator запустите симулятор банковского сервиса:
  `npm start`;
 
-1. Запуск приложения (в зависимости от базы данных):
-`java -Dspring.datasource.url=jdbc:postgresql://localhost:5432/postgres -jar artifacts/aqa-shop.jar`
-*или*
-`java -Dspring.datasource.url=jdbc:mysql://localhost:3306/app -jar artifacts/aqa-shop.jar`
-
-1. Запуск тестов (в зависимости от базы данных):
+### Запуск тестов (в зависимости от базы данных):
 `./gradlew test -Ddb.url=jdbc:postgresql://localhost:5432/postgres -Dlogin=app -Dpassword=pass -Dapp.url=http://localhost:8080`
+
 *или*
+
 `./gradlew test -Ddb.url=jdbc:mysql://localhost:3306/app -Dlogin=app -Dpassword=pass -Dapp.url=http://localhost:8080`

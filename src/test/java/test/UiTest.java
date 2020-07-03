@@ -16,12 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class UiTest {
-    String wayOfPaymentPay = "pay";
-    String wayOfPaymentByCredit = "credit";
 
     @BeforeEach
     void setUp() {
-        open("http://localhost:8080");
+        String appUrl = System.getProperty("app.url");
+        open(appUrl);
     }
 
     @Test
@@ -29,7 +28,7 @@ public class UiTest {
         val proposalPage = new ProposalPage();
         val cardData = proposalPage.selectBuyByDebitCard();
         val validCardInfo = DataHelper.getValidCardInfo();
-        cardData.cardInfoForSelectedWay(validCardInfo,  wayOfPaymentPay);
+        cardData.cardInfoForSelectedWay(validCardInfo);
         cardData.checkIfPaymentSuccessful();
         val paymentId = Sql.getPaymentId();
         val statusForPaymentByDebitCard = Sql.getStatusForPaymentByDebitCard(paymentId);
@@ -44,7 +43,7 @@ public class UiTest {
         val proposalPage = new ProposalPage();
         val cardData = proposalPage.selectBuyByCreditCard();
         val validCardInfo = DataHelper.getValidCardInfo();
-        cardData.cardInfoForSelectedWay(validCardInfo, wayOfPaymentByCredit);
+        cardData.cardInfoForSelectedWay(validCardInfo);
         cardData.checkIfPaymentSuccessful();
         val paymentId = Sql.getPaymentId();
         val statusForPaymentByCreditCard = Sql.getStatusForPaymentByCreditCard(paymentId);
@@ -56,7 +55,7 @@ public class UiTest {
         val proposalPage = new ProposalPage();
         val cardData = proposalPage.selectBuyByDebitCard();
         val invalidCardInfo = DataHelper.getInvalidCardInfo();
-        cardData.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentPay);
+        cardData.cardInfoForSelectedWay(invalidCardInfo);
         cardData.checkIfPaymentNotSuccessful();  // баг
         val paymentId = Sql.getPaymentId();
         val statusForPaymentByDebitCard = Sql.getStatusForPaymentByDebitCard(paymentId);
@@ -68,7 +67,7 @@ public class UiTest {
         val proposalPage = new ProposalPage();
         val cardData = proposalPage.selectBuyByCreditCard();
         val validCardInfo = DataHelper.getInvalidCardInfo();
-        cardData.cardInfoForSelectedWay(validCardInfo, wayOfPaymentByCredit);
+        cardData.cardInfoForSelectedWay(validCardInfo);
         cardData.checkIfPaymentNotSuccessful(); // баг
         val paymentId = Sql.getPaymentId();
         val statusForPaymentByCreditCard = Sql.getStatusForPaymentByCreditCard(paymentId);
@@ -80,10 +79,10 @@ public class UiTest {
         val proposalPage = new ProposalPage();
         val cardData = proposalPage.selectBuyByCreditCard();
         val invalidCardInfo = DataHelper.getCardInfoWithWrongNumber();
-        cardData.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentByCredit);
+        cardData.cardInfoForSelectedWay(invalidCardInfo);
         cardData.checkIfWrongFormatOfField();
         val cardData2 = proposalPage.selectBuyByDebitCard();
-        cardData2.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentPay);
+        cardData2.cardInfoForSelectedWay(invalidCardInfo);
         cardData2.checkIfWrongFormatOfField();
     }
 
@@ -92,10 +91,10 @@ public class UiTest {
         val proposalPage = new ProposalPage();
         val cardData = proposalPage.selectBuyByCreditCard();
         val invalidCardInfo = DataHelper.getCardInfoWithWrongMonth();
-        cardData.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentByCredit);
+        cardData.cardInfoForSelectedWay(invalidCardInfo);
         cardData.checkIfWrongFormatOfField();
         val cardData2 = proposalPage.selectBuyByDebitCard();
-        cardData2.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentPay);
+        cardData2.cardInfoForSelectedWay(invalidCardInfo);
         cardData2.checkIfWrongFormatOfField();
     }
 
@@ -104,10 +103,10 @@ public class UiTest {
         val proposalPage = new ProposalPage();
         val cardData = proposalPage.selectBuyByCreditCard();
         val invalidCardInfo = DataHelper.getCardInfoWithWrongMonth();
-        cardData.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentByCredit);
+        cardData.cardInfoForSelectedWay(invalidCardInfo);
         cardData.checkIfWrongFormatOfField();
         val cardData2 = proposalPage.selectBuyByDebitCard();
-        cardData2.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentPay);
+        cardData2.cardInfoForSelectedWay(invalidCardInfo);
         cardData2.checkIfWrongFormatOfField();
     }
 
@@ -116,10 +115,10 @@ public class UiTest {
         val proposalPage = new ProposalPage();
         val cardData = proposalPage.selectBuyByCreditCard();
         val invalidCardInfo = DataHelper.getCardInfoWithWrongMonth();
-        cardData.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentByCredit);
+        cardData.cardInfoForSelectedWay(invalidCardInfo);
         cardData.checkIfWrongFormatOfField();
         val cardData2 = proposalPage.selectBuyByDebitCard();
-        cardData2.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentPay);
+        cardData2.cardInfoForSelectedWay(invalidCardInfo);
         cardData2.checkIfWrongFormatOfField();
     }
 
@@ -128,10 +127,10 @@ public class UiTest {
         val proposalPage = new ProposalPage();
         val cardData = proposalPage.selectBuyByCreditCard();
         val invalidCardInfo = DataHelper.getCardInfoWithWrongCvc();
-        cardData.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentByCredit);
+        cardData.cardInfoForSelectedWay(invalidCardInfo);
         cardData.checkIfWrongFormatOfField();
         val cardData2 = proposalPage.selectBuyByDebitCard();
-        cardData2.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentPay);
+        cardData2.cardInfoForSelectedWay(invalidCardInfo);
         cardData2.checkIfWrongFormatOfField();
     }
 
@@ -140,10 +139,10 @@ public class UiTest {
         val proposalPage = new ProposalPage();
         val cardData = proposalPage.selectBuyByCreditCard();
         val invalidCardInfo = DataHelper.getCardInfoWithWrongName();
-        cardData.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentByCredit);
+        cardData.cardInfoForSelectedWay(invalidCardInfo);
         cardData.checkIfWrongFormatOfField();
         val cardData2 = proposalPage.selectBuyByDebitCard();
-        cardData2.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentPay);
+        cardData2.cardInfoForSelectedWay(invalidCardInfo);
         cardData2.checkIfWrongFormatOfField();
     }
 
@@ -152,10 +151,10 @@ public class UiTest {
         val proposalPage = new ProposalPage();
         val cardData = proposalPage.selectBuyByCreditCard();
         val invalidCardInfo = DataHelper.getCardInfoWithoutName();
-        cardData.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentByCredit);
+        cardData.cardInfoForSelectedWay(invalidCardInfo);
         cardData.checkIfWrongFormatOfField();
         val cardData2 = proposalPage.selectBuyByDebitCard();
-        cardData2.cardInfoForSelectedWay(invalidCardInfo, wayOfPaymentPay);
+        cardData2.cardInfoForSelectedWay(invalidCardInfo);
         cardData2.checkIfWrongFormatOfField();
     }
 }

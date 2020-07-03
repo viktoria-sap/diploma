@@ -9,16 +9,16 @@ import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.given;
 
 public class RestApi {
+    static String appUrl = System.getProperty("app.url");
     public static RequestSpecification requestSpec = new RequestSpecBuilder()
-            .setBaseUri("http://localhost")
-            .setPort(8080)
+            .setBaseUri(appUrl)
             .setAccept(ContentType.JSON)
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
             .build();
 
     public static String paymentFormByDebitCard(DataHelper.CardInfo cardInfo) {
-        String response = given() // -P:profile=test
+        String response = given()
                 .spec(requestSpec)
                 .body(cardInfo)
                 .when()
@@ -31,7 +31,7 @@ public class RestApi {
     }
 
     public static String paymentFormByCreditCard(DataHelper.CardInfo cardInfo) {
-        String response = given() // -P:profile=test
+        String response = given()
                 .spec(requestSpec)
                 .body(cardInfo)
                 .when()

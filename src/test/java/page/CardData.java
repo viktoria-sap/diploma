@@ -15,18 +15,10 @@ public class CardData {
     private SelenideElement cvcCode = $("input[type='text'][placeholder='999']");
     private SelenideElement successNotification = $("div.notification.notification_status_ok.notification_has-closer.notification_stick-to_right.notification_theme_alfa-on-white > div.notification__content");
     private SelenideElement errorNotification = $(".notification_status_error.notification_has-closer.notification_stick-to_right.notification_theme_alfa-on-white > div.notification__content");
-    private SelenideElement paymentBySelectedWayHeader = $("#root > div > h3");
     private SelenideElement buttonContinue = $("div:nth-child(4) > button > span > span");
     private SelenideElement wrongFormatNotification = $(".input__sub");
 
-    public void cardInfoForSelectedWay(DataHelper.CardInfo cardInfo, String wayOfPayment) {
-        if (wayOfPayment.equals("pay")) {
-            paymentBySelectedWayHeader.shouldHave(Condition.text("Оплата по карте"));
-        } else if (wayOfPayment.equals("credit")) {
-            paymentBySelectedWayHeader.shouldHave(Condition.text("Кредит по данным карты"));
-        } else {
-            System.out.println("parameter wayOfPayment can be only 'pay' or 'credit'");
-        }
+    public void cardInfoForSelectedWay(DataHelper.CardInfo cardInfo) {
         cardNumber.setValue(cardInfo.getNumber());
         cardExpirationMonth.setValue(cardInfo.getMonth());
         cardExpirationYear.setValue(cardInfo.getYear());
