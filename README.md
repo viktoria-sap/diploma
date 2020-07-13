@@ -1,6 +1,11 @@
 ### О программе:
 Предназначена для автоматизированного тестирования сервиса по покупке тура с помощью дебетовой карты или с получением кредита по данным дебетовой карты.
 
+### Документация:
+  * [Plan.md](https://github.com/viktoria-sap/diploma/blob/master/documentation/Plan.md)
+  * [Report.md](https://github.com/viktoria-sap/diploma/blob/master/documentation/Report.md)
+  * [Summary.md](https://github.com/viktoria-sap/diploma/blob/master/documentation/Summary.md). 
+
 ### Тестовое окружение
 1. Node.js, Docker; 
 1. Свободные порты 8080, 9999 и 5432 или 3306 (в зависимости от базы данных);
@@ -31,4 +36,5 @@
 `./gradlew allureReport`
 
 И далее пройти по пути: */build/reports/allure-report/index.html*
+
 **Open in Browser → Default**
