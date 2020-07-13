@@ -1,7 +1,11 @@
 package test;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
 import data.DataHelper;
+import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import page.ProposalPage;
@@ -16,6 +20,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class UiTest {
+
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide()); }
 
     @BeforeEach
     void setUp() {
@@ -157,4 +165,9 @@ public class UiTest {
         cardData2.cardInfoForSelectedWay(invalidCardInfo);
         cardData2.checkIfWrongFormatOfField();
     }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure"); }
+
 }

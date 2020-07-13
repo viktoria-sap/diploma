@@ -26,3 +26,9 @@
 *или*
 
 `./gradlew test -Ddb.url=jdbc:mysql://localhost:3306/app -Dlogin=app -Dpassword=pass -Dapp.url=http://localhost:8080`
+
+### Отчет (allureReport):
+`./gradlew allureReport`
+
+И далее пройти по пути: */build/reports/allure-report/index.html*
+**Open in Browser → Default**
