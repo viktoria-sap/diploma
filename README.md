@@ -12,7 +12,7 @@
 
 ### Шаги до запуска тестов:
 
-1. git clone git@github.com:viktoria-sap/diploma.git;
+1. git clone *git@github.com:viktoria-sap/diploma.git*;
 
 1. Запуск контейнера, в котором разворачивается база данных:
 `docker-compose up -d --force-recreate`;
